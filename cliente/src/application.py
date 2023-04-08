@@ -12,6 +12,7 @@
 #
 #-------------------------------------------------------------------------
 from src.view.dashboard import Dashboard
+from dash import html
 import dash_bootstrap_components as dbc
 import dash
 
@@ -27,3 +28,19 @@ app.title = "ETL"
 dashboard = Dashboard()
 
 app.layout = dashboard.document()
+
+@app.callback(
+    dash.dependencies.Output('selected_start_date', 'children'),
+    [dash.dependencies.Input('date_select', 'start_date')],)
+def get_start_date(value):
+    if value:
+        return value
+    return ""
+
+@app.callback(
+    dash.dependencies.Output('selected_end_date', 'children'),
+    [dash.dependencies.Input('date_select', 'end_date')],)
+def get_end_date(value):
+    if value:
+        return value
+    return ""

@@ -9,6 +9,7 @@ class Processor:
 
         if res.status_code == 200:
             response = json.loads(res.text)
+            # print(response)
 
             if not 'data' in response.keys():
                 return None

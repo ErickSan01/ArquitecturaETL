@@ -27,7 +27,6 @@ class XMLTransformer(luigi.Task):
                 tree = ET.parse(xml_file)
                 root = tree.getroot()
                 for row in root.findall('row'):
-                    print(row.find('date_inv').text)
                     result.append(
                         {
                             "description": row.find('desc').text,

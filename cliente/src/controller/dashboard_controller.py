@@ -105,8 +105,6 @@ class DashboardController:
 
         json_response = json.loads(response.text)
 
-        print(json_response)
-
         assert('data' in json_response.keys())
         assert('response' in json_response['data'].keys())
 
@@ -235,9 +233,8 @@ class DashboardController:
         assert('response' in json_response['data'].keys())
 
         for entry in json_response["data"]["response"]:
-            print(entry)
             result.append({
-                "product": entry["description"]
-                # "date": entry["invoice_date"]
+                "product": entry["description"],
+                "date": entry["date"][0:-1]
             })
         return result

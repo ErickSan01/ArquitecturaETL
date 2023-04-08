@@ -29,6 +29,7 @@ class Queries:
 
             # Define Directives and index
             description: String @index(term) @lang .
+            invoice_date: datetime @index(day) .
             quantity: int @index(int) .
             price: float .
             bought: [uid] @count @reverse .
@@ -60,6 +61,16 @@ class Queries:
                 }
             }
         """ % (desc)
+
+    @staticmethod
+    def query_inv_date(inv_date):
+        return """
+            {
+                response(func: eq(invoice_date, "%s")) {
+                    uid
+                }
+            }
+        """ % (inv_date)
 
     @staticmethod
     def query_invoice(inv):

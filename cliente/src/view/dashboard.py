@@ -15,6 +15,7 @@ from src.controller.dashboard_controller import DashboardController
 import dash_bootstrap_components as dbc
 import plotly.express as px
 from dash import dcc, html
+from datetime import date
 
 class Dashboard:
 
@@ -336,12 +337,29 @@ class Dashboard:
                                 html.H3("Sales per date", className = "card-title"),
                                 html.Br(),
                                 html.Div(
+                                    dcc.DatePickerRange(
+                                        id='date_select',
+                                        min_date_allowed=date(2009, 1, 1),
+                                        max_date_allowed=date(2023, 12, 31),
+                                        initial_visible_month=date(2009, 1, 1),
+                                        start_date=date(2009, 1, 1),
+                                        end_date=date(2023, 12, 31)
+                                        )
+                                ),
+                                html.Div(
+                                    [
+                                        html.H5(id="selected_start_date"),
+                                        html.Br(),
+                                        html.H5(id="selected_end_date")
+                                    ]
+                                ),
+                                html.Div(
                                     [
                                         html.Div(
                                             [
                                                 dbc.Row(
                                                     [
-                                                        html.H5(f"- {product['product']}", style={"font-weight":"bold"}),
+                                                        html.H5(f"- {product['product']} | {product['date']}", style={"font-weight":"bold"}),
                                                     ]
                                                 ),
                                             ]
