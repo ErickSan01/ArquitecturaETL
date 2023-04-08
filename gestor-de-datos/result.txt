@@ -1,0 +1,4 @@
+...file /media/sf_Clases_Enero_Junio_2023/Arquitectura de Software/ArquiLeo/gestor-de-datos/result/csv.json processed
+...file /media/sf_Clases_Enero_Junio_2023/Arquitectura de Software/ArquiLeo/gestor-de-datos/result/xml.json processed
+...file /media/sf_Clases_Enero_Junio_2023/Arquitectura de Software/ArquiLeo/gestor-de-datos/result/htm.json processed
+...file /media/sf_Clases_Enero_Junio_2023/Arquitectura de Software/ArquiLeo/gestor-de-datos/result/txt.json processed
