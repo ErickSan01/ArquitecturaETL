@@ -20,6 +20,8 @@ from datetime import date
 class Dashboard:
 
     def __init__(self):
+        self.start_date_G = ""
+        self.end_date_G = ""
         pass
 
     def document(self):
@@ -326,7 +328,7 @@ class Dashboard:
 
 
     def _panel_sales_per_date(self):
-        sales_per_date = DashboardController.load_sales_per_date()
+        sales_per_date = DashboardController.load_sales_per_date()        
 
         return html.Div(
             [
@@ -337,35 +339,33 @@ class Dashboard:
                                 html.H3("Sales per date", className = "card-title"),
                                 html.Br(),
                                 html.Div(
-                                    dcc.DatePickerRange(
-                                        id='date_select',
-                                        min_date_allowed=date(2009, 1, 1),
-                                        max_date_allowed=date(2023, 12, 31),
-                                        initial_visible_month=date(2009, 1, 1),
-                                        start_date=date(2009, 1, 1),
-                                        end_date=date(2023, 12, 31)
-                                        )
-                                ),
-                                html.Div(
                                     [
-                                        html.H5(id="selected_start_date"),
-                                        html.Br(),
-                                        html.H5(id="selected_end_date")
-                                    ]
-                                ),
-                                html.Div(
-                                    [
+                                        dcc.DatePickerRange(
+                                            id='date_select',
+                                            min_date_allowed=date(2010, 1, 1),
+                                            max_date_allowed=date(2023, 12, 31),
+                                            start_date=date(2010, 1, 1),
+                                            end_date=date(2012, 12, 31)
+                                            ),
                                         html.Div(
-                                            [
-                                                dbc.Row(
-                                                    [
-                                                        html.H5(f"- {product['product']} | {product['date']}", style={"font-weight":"bold"}),
-                                                    ]
-                                                ),
-                                            ]
-                                        )
-                                        for product in sales_per_date
+                                            html.H5("Select start hour")
+                                        ),
+                                        dcc.Dropdown(["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"], "08:00", id="dropdown-horaS", searchable=False),
+                                        html.Div(
+                                            html.H5("Select end hour")
+                                        ),
+                                        dcc.Dropdown(["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"], "09:00", id="dropdown-horaE", searchable=False),
                                     ]
+                                ),
+                                html.Div(
+                                    dcc.Store(id="store-data", data = [], storage_type="memory"),
+                                        
+                                ),
+                                html.Div(
+                                    [html.Div(id='table_placeholder', children=[])], className='row'
+                                ),
+                                html.Div(
+                                    [html.Div(id="total_price", children=[])]
                                 )
                             ]
                         )

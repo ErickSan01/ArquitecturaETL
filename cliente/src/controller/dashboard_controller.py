@@ -233,8 +233,17 @@ class DashboardController:
         assert('response' in json_response['data'].keys())
 
         for entry in json_response["data"]["response"]:
+            day = entry['date'][8:10]
+            month = entry['date'][5:7]
+            year = entry['date'][0:4]
+
+            hour = entry['date'][11:13]
+            minutes = entry['date'][14:16]
+
+            fecha = year + "/" + month + "/" + day + " " + hour + ":" + minutes
             result.append({
                 "product": entry["description"],
-                "date": entry["date"][0:-1]
+                "date": fecha,
+                "price": entry["price"]
             })
         return result

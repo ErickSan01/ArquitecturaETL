@@ -163,6 +163,7 @@ class Queries:
                 response(func: has(description)){
                     description
                     date
+                    price
                 }
             }
         """
